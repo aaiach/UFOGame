@@ -1,4 +1,4 @@
 
-bin/
-tmp/
-*class
+ppa-major-coursework/bin/
+ppa-major-coursework/tmp/
+*.class
