@@ -1,4 +1,4 @@
-package views;
+package views.statistics;
 
 import javax.swing.*;
 import java.awt.*;
