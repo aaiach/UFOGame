@@ -1,18 +1,22 @@
-import api.ripley.Incident;
-import api.ripley.Ripley;
+import controller.YouTubeAPI;
+import org.json.JSONObject;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Created by robert on 07/03/17.
  */
 public class TestClass {
     public static void main(String[] args) {
-        Ripley ripley = new Ripley("90tLI3CRs9iyVD6ql2OMtA==", "lBgm4pRv9wjVqL46EnH7ew==");
-        ArrayList<Incident> incidents = ripley.getIncidentsInRange("2015-01-01 00:00:00", "2015-01-31 00:00:00");
-        for (Incident i : incidents) {
-            String details = ripley.getIncidentDetails(i.getIncidentID());
-            if (details.toLowerCase().contains("hoax")) System.out.println(details);
-        }
+        YouTubeAPI api = new YouTubeAPI("AIzaSyCK6WyGL1jJgNUdbn_pUE4JbU1h2Z4UJds");
+        HashMap<String, String> params = new HashMap<>();
+        params.put("q", "ufo");
+        params.put("maxResults", "0");
+        String resp = api.queryAPI(params);
+        System.out.println(resp);
+
+        JSONObject jsonObject = new JSONObject(resp);
+        int totalResults = jsonObject.getJSONObject("pageInfo").getInt("totalResults");
+        System.out.println(totalResults);
     }
 }
