@@ -1,9 +1,16 @@
 package models;
 
 /**
+ * USStates is a class used for checking whether a state is a US State or not
+ *
  * @author Robert Greener.
  */
 public class USStates {
+    /**
+     * This is an array of all US State names, District of Columbia, and US territory names
+     *
+     * This was found inside the decompiled ripley.jar -- thanks Martin
+     */
     private static String[] states = {
             "Alabama,Ala.,AL",
             "Alaska,Alaska,AK",
@@ -65,19 +72,35 @@ public class USStates {
             "Wisconsin,Wis.,WI",
             "Wyoming,Wyo.,WY" };
 
+    /**
+     * Checks whether a supplied String is a US State
+     * @param name the String to check
+     * @return true if the String is a US State, false otherwise
+     */
     public static boolean isState(String name) {
+        // For each state in states
         for (String state : states) {
+            // if the state string contains name, return true
             if (state.contains(name)) return true;
         }
 
+        // otherwise return false
         return false;
     }
 
+    /**
+     * Gets the full state name from a segment of the state name
+     * @param name the segment of the state name
+     * @return the full state name if found, if not null
+     */
     public static String getFullStateName(String name) {
+        // For each state in states
         for (String state : states) {
+            // if the state string contains name, return the state string
             if (state.contains(name)) return state;
         }
 
+        // Otherwise return null
         return null;
     }
 }
