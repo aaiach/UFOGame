@@ -1,6 +1,5 @@
 package controller.statistics;
 
-import controller.YouTubeAPI;
 import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;

@@ -1,4 +1,4 @@
-package controller;
+package controller.statistics;
 
 import java.io.IOException;
 import java.io.InputStream;

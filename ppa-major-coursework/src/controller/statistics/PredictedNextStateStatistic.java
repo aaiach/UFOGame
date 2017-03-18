@@ -2,7 +2,6 @@ package controller.statistics;
 
 import api.ripley.Incident;
 import models.SightingsAtStates;
-import models.USStates;
 
 import java.util.List;
 
