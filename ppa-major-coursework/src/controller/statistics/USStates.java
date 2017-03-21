@@ -103,4 +103,8 @@ public class USStates {
         // Otherwise return null
         return null;
     }
+
+    public static String[] getStates () {
+        return states.clone();
+    }
 }
