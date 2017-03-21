@@ -1,21 +1,31 @@
 package controller.statistics;
 
+import api.ripley.Incident;
+
 import java.util.Date;
 import java.util.List;
 
-import api.ripley.Incident;
-
 /**
- * @author Adriel Aiach
  * This class calculates the average number of sightings per day
+ *
+ * @author Adriel Aiach
  */
 public class SightingsPerDayStatistic extends Statistic {
-
+    /**
+     * The list of incidents to look at
+     */
 	private List<Incident> incidents;
+    /**
+     * The start and end dates
+     */
 	private Date start, end;
 	
     /**
      * Creates a new SightingsPerDayStatistic
+     *
+     * @param incidents A list of incidents to look at
+     * @param start the start date
+     * @param end the end date
      */
     public SightingsPerDayStatistic(List<Incident> incidents, Date start, Date end) {
     	
