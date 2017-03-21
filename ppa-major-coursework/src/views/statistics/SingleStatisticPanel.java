@@ -1,5 +1,8 @@
 package views.statistics;
 
+import controller.StatisticController;
+import models.statistics.Statistic;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -11,10 +14,11 @@ public class SingleStatisticPanel extends JPanel {
     private JLabel statisticData;
     private JButton leftButton;
     private JButton rightButton;
+    private Statistic statistic;
 
-    public SingleStatisticPanel(String statisticTitleText, String statisticDataText) {
-        this.statisticTitle = new JLabel(statisticTitleText);
-        this.statisticData = new JLabel(statisticDataText);
+    public SingleStatisticPanel(StatisticController controller, Statistic statistic) {
+        this.statisticTitle = new JLabel();
+        this.statisticData = new JLabel();
         this.leftButton = new JButton("<");
         this.rightButton = new JButton(">");
         this.setLayout(new BorderLayout());
@@ -24,19 +28,14 @@ public class SingleStatisticPanel extends JPanel {
         this.add(rightButton, BorderLayout.EAST);
     }
 
-    public String getStatisticTitleText() {
-        return statisticTitle.getText();
+    public void setStatistic(Statistic statistic) {
+        this.statistic = statistic;
+        this.statisticTitle.setText(statistic.getName());
+        this.statisticData.setText(statistic.getData());
+        this.updateUI();
     }
 
-    public String getStatisticTitleData() {
-        return statisticData.getText();
-    }
-
-    public void setStatisticTitleText(String text) {
-        statisticTitle.setText(text);
-    }
-
-    public void setStatisticDataText(String text) {
-        statisticData.setText(text);
+    public Statistic getStatistic() {
+        return statistic;
     }
 }
