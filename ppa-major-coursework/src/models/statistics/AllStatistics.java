@@ -46,3 +46,7 @@ public class AllStatistics {
         return this.statistics.size();
     }
 }
+
+    public AllStatistics(List<Statistic> statistics) {
+        this.statistics.addAll(statistics);
+        this.statistics = new ArrayList<>();
