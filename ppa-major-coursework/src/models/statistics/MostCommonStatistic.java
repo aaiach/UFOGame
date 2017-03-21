@@ -1,4 +1,4 @@
-package controller.statistics;
+package models.statistics;
 
 import api.ripley.Incident;
 

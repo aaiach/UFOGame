@@ -22,7 +22,7 @@ public class StatisticController {
     public StatisticController(Ripley ripley) {
         this.ripley = ripley;
         allStatistics = new AllStatistics();
-        visibleIndices = new ArrayList<Integer>(Arrays.asList(0,1,2,3));
+        visibleIndices = new ArrayList<>(Arrays.asList(0,1,2,3));
     }
 
     public void move (Area area, Directions directions) {

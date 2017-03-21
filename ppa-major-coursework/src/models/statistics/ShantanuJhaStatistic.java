@@ -1,4 +1,4 @@
-package controller.statistics;
+package models.statistics;
 
 /**
  * TODO: Implement this statistic
