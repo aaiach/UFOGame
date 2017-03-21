@@ -1,4 +1,4 @@
-package controller.statistics;
+package models.statistics;
 
 /**
  * USStates is a class used for checking whether a state is a US State or not

@@ -1,4 +1,4 @@
-import controller.statistics.YouTubeAPI;
+import models.statistics.YouTubeAPI;
 import org.json.JSONObject;
 
 import java.util.HashMap;

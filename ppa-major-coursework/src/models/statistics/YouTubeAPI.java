@@ -1,4 +1,4 @@
-package controller.statistics;
+package models.statistics;
 
 import java.io.IOException;
 import java.io.InputStream;

@@ -1,4 +1,4 @@
-package controller.statistics;
+package models.statistics;
 
 /**
  * Statistic is an abstract class, who's subclasses will be one of the Statistics about UFO's
