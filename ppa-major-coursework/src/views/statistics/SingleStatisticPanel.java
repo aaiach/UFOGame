@@ -5,6 +5,7 @@ import models.statistics.Statistic;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 
 /**
  * @author Robert Greener.
@@ -14,18 +15,30 @@ public class SingleStatisticPanel extends JPanel {
     private JLabel statisticData;
     private JButton leftButton;
     private JButton rightButton;
+    private Area area;
     private Statistic statistic;
+    private StatisticController controller;
 
-    public SingleStatisticPanel(StatisticController controller, Statistic statistic) {
+    public SingleStatisticPanel(StatisticController controller, Area area, Statistic statistic) {
         this.statisticTitle = new JLabel();
         this.statisticData = new JLabel();
+        this.area = area;
+        this.controller = controller;
+        setStatistic(statistic);
         this.leftButton = new JButton("<");
         this.rightButton = new JButton(">");
         this.setLayout(new BorderLayout());
         this.add(statisticTitle, BorderLayout.NORTH);
         this.add(statisticData, BorderLayout.CENTER);
         this.add(leftButton, BorderLayout.WEST);
+        leftButton.addActionListener((ActionEvent e) ->
+            this.controller.move(this.area, Directions.LEFT)
+        );
+
         this.add(rightButton, BorderLayout.EAST);
+        rightButton.addActionListener((ActionEvent e) ->
+            this.controller.move(this.area, Directions.RIGHT)
+        );
     }
 
     public void setStatistic(Statistic statistic) {

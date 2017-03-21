@@ -19,11 +19,15 @@ public class StatisticsPanel extends JPanel {
     public StatisticsPanel(StatisticController controller, Statistic statisticTopLeft, Statistic statisticTopRight,
                            Statistic statisticBottomLeft, Statistic statisticBottomRight) {
         this.setLayout(new GridLayout(2, 2));
-        topLeft = new SingleStatisticPanel(controller, statisticTopLeft);
-        topRight = new SingleStatisticPanel(controller, statisticTopRight);
-        bottomLeft = new SingleStatisticPanel(controller, statisticBottomLeft);
-        bottomRight = new SingleStatisticPanel(controller, statisticBottomRight);
+        topLeft = new SingleStatisticPanel(controller, Area.TOP_LEFT, statisticTopLeft);
+        topRight = new SingleStatisticPanel(controller, Area.TOP_RIGHT, statisticTopRight);
+        bottomLeft = new SingleStatisticPanel(controller, Area.BOTTOM_LEFT, statisticBottomLeft);
+        bottomRight = new SingleStatisticPanel(controller, Area.BOTTOM_RIGHT, statisticBottomRight);
         this.controller = controller;
+        this.add(topLeft);
+        this.add(topRight);
+        this.add(bottomLeft);
+        this.add(bottomRight);
     }
 
     public void changeStatistic (Area area, Statistic statistic) {
