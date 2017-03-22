@@ -23,4 +23,9 @@ public class WelcomePanel extends JPanel {
             this.add(new JLabel(text));
         }
     }
+
+    public void clear() {
+        this.removeAll();
+        this.updateUI();
+    }
 }

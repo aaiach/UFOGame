@@ -1,5 +1,6 @@
 package views;
 
+import controller.MainController;
 import org.jdatepicker.JDatePicker;
 import org.jdatepicker.impl.DateComponentFormatter;
 import org.jdatepicker.impl.JDatePanelImpl;
@@ -8,6 +9,7 @@ import org.jdatepicker.impl.UtilDateModel;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -59,11 +61,16 @@ public class MainWindow extends JFrame {
     private SimpleDateFormat dateFormat;
 
     /**
+     * The controller for the MainWindow
+     */
+    private MainController controller;
+
+    /**
      * Makes a new MainWindow
      *
      * @param panelToDisplay The initial JPanel to display
      */
-    public MainWindow(JPanel panelToDisplay) {
+    public MainWindow(MainController controller, JPanel panelToDisplay) {
         // Calls the superclass constructor to set the title of the window
         super("Ripley API Interface");
 
@@ -74,6 +81,7 @@ public class MainWindow extends JFrame {
         dateFormat = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy");
 
         this.panelOnDisplay = panelToDisplay;
+        this.controller = controller;
 
         // Set the layout of the window to a border layout
         this.setLayout(new BorderLayout());
@@ -132,6 +140,9 @@ public class MainWindow extends JFrame {
         // Crate a JButton to get the data
         JButton calculateDataButton = new JButton("Calculate");
 
+        calculateDataButton.addActionListener((ActionEvent e) ->
+                controller.reCalculateData(dateModelFrom.getValue(), dateModelTo.getValue()));
+
 
         // Create a JPanel for the north of the window, with a FlowLayout that goes from right to left
         JPanel jpNorth = new JPanel(new FlowLayout(FlowLayout.TRAILING));
@@ -160,12 +171,6 @@ public class MainWindow extends JFrame {
         this.setVisible(true);
     }
 
-    public static void main(String[] args) {
-        JPanel jPanel = new JPanel();
-        jPanel.add(new JLabel("Hi"));
-        MainWindow mainWindow = new MainWindow(jPanel);
-    }
-
     /**
      * Changes the visible panel on the display
      * @param panelToDisplay the new JPanel to display
@@ -189,7 +194,7 @@ public class MainWindow extends JFrame {
      * Sets whether all buttons are enabled
      * @param enable true if they should be enabled, false if they should be disabled
      */
-    public void enableButton(boolean enable) {
+    public void enableButtons(boolean enable) {
         enableButton(Directions.LEFT, enable);
         enableButton(Directions.RIGHT, enable);
     }
@@ -229,5 +234,14 @@ public class MainWindow extends JFrame {
     public void setLastUpdated (Date lastUpdated) {
         // Update the label, with the date formatted by dateFormat
         dateLabel.setText(datePrefix + dateFormat.format(lastUpdated));
+    }
+
+    /**
+     * Show an error message to the user
+     * @param title The title of the dialog
+     * @param message The main message of the window
+     */
+    public void showErrorMessage(String title, String message) {
+        JOptionPane.showMessageDialog(this, message, title, JOptionPane.ERROR_MESSAGE);
     }
 }
