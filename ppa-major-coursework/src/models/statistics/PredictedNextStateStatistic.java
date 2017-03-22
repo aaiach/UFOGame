@@ -9,6 +9,8 @@ import java.util.List;
  * PredictedNextStateStatistic is a Statistic that gets the state where the next sighting is predicted to take place
  *
  * It is assumed that the State with the most sightings, will be most likely to have the next sighting
+ *
+ * @author Robert Greener
  */
 public class PredictedNextStateStatistic extends Statistic{
     /**

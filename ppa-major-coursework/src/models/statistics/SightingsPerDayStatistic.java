@@ -15,11 +15,17 @@ public class SightingsPerDayStatistic extends Statistic {
      * The list of incidents to look at
      */
 	private List<Incident> incidents;
+
     /**
-     * The start and end dates
+     * The start date
      */
-	private Date start, end;
-	
+	private Date start;
+
+    /**
+     * The end date
+     */
+	private Date end;
+
     /**
      * Creates a new SightingsPerDayStatistic
      *

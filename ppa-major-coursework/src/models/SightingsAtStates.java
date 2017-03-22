@@ -70,6 +70,10 @@ public class SightingsAtStates {
         else return null;
     }
 
+    /**
+     * Gets the number of sightings per state
+     * @return A HashMap where the key is the state name, and the value is the number of sightings at that states
+     */
     public HashMap<String, Integer> getNumberOfSightings() {
         return new HashMap<>(numberOfSightings);
     }
