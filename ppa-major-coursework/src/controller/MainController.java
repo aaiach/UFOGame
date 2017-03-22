@@ -131,7 +131,7 @@ public class MainController {
                     "No incidents were found in the supplied date range");
             else {
                 // Create a new StatisticController
-                StatisticController statisticController = new StatisticController(ripley, incidents, dateFrom, dateTo);
+                StatisticController statisticController = new StatisticController(incidents, dateFrom, dateTo);
                 // Add the StatisticPanel to the panels List
                 panels.add(1, statisticController.getPanel());
 

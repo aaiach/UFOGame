@@ -13,7 +13,7 @@ import java.awt.event.ActionEvent;
  *
  * @author Robert Greener.
  */
-public class SingleStatisticPanel extends JPanel {
+class SingleStatisticPanel extends JPanel {
     /**
      * The title of the statistic
      */
@@ -23,11 +23,6 @@ public class SingleStatisticPanel extends JPanel {
      * The data of the statistic
      */
     private JLabel statisticData;
-
-    /**
-     * The area at which this panel is displayed
-     */
-    private Area area;
 
     /**
      * The controller for the statistic
@@ -67,7 +62,7 @@ public class SingleStatisticPanel extends JPanel {
 
         // Add an ActionListener for the left button, calling controller.move
         leftButton.addActionListener((ActionEvent e) ->
-            this.controller.move(this.area, Directions.LEFT)
+            this.controller.move(area, Directions.LEFT)
         );
 
         // Add the right button
@@ -75,7 +70,7 @@ public class SingleStatisticPanel extends JPanel {
 
         // Add an ActionListener for the right button, calling controller.move
         rightButton.addActionListener((ActionEvent e) ->
-            this.controller.move(this.area, Directions.RIGHT)
+            this.controller.move(area, Directions.RIGHT)
         );
     }
 

@@ -50,11 +50,6 @@ public class MainWindow extends JFrame {
     private UtilDateModel dateModelFrom;
 
     /**
-     * The controller for the MainWindow
-     */
-    private MainController controller;
-
-    /**
      * Makes a new MainWindow
      *
      * @param panelToDisplay The initial JPanel to display
@@ -67,7 +62,6 @@ public class MainWindow extends JFrame {
         this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 
         this.panelOnDisplay = panelToDisplay;
-        this.controller = controller;
 
         // Set the layout of the window to a border layout
         this.setLayout(new BorderLayout());

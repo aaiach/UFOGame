@@ -66,6 +66,8 @@ public class MostCommonStatistic extends Statistic {
         }
 
         // Return the key of largestEntry (shape name)
-        return largestEntry.getKey();
+        if (largestEntry != null) return largestEntry.getKey();
+        else return null;
+
     }
 }

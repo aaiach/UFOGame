@@ -1,7 +1,6 @@
 package controller;
 
 import api.ripley.Incident;
-import api.ripley.Ripley;
 import models.statistics.*;
 import views.Directions;
 import views.statistics.Area;
@@ -16,15 +15,13 @@ import java.util.List;
  * @author Robert Greener.
  */
 public class StatisticController {
-    private Ripley ripley;
     private StatisticsPanel statisticsPanel;
     private List<Integer> visibleIndices;
     private AllStatistics allStatistics;
 
-    public StatisticController(Ripley ripley, List<Incident> incidents, Date startDate, Date endDate) {
-        this.ripley = ripley;
+    public StatisticController(List<Incident> incidents, Date startDate, Date endDate) {
         allStatistics = new AllStatistics();
-        allStatistics.add(new HoaxStatistic(ripley, incidents));
+        allStatistics.add(new HoaxStatistic(incidents));
         allStatistics.add(new NonUSSightingsStatistic(incidents));
         allStatistics.add(new PredictedNextStateStatistic(incidents));
         allStatistics.add(new YouTubeSightingsStatistic(startDate, endDate));

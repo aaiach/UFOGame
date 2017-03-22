@@ -66,7 +66,8 @@ public class SightingsAtStates {
         }
 
         // Return the key of highestState (which is the state name)
-        return highestState.getKey();
+        if (highestState != null) return highestState.getKey();
+        else return null;
     }
 
     public HashMap<String, Integer> getNumberOfSightings() {

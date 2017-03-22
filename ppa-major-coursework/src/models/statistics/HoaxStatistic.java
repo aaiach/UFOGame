@@ -1,7 +1,6 @@
 package models.statistics;
 
 import api.ripley.Incident;
-import api.ripley.Ripley;
 
 import java.util.List;
 
@@ -11,10 +10,6 @@ import java.util.List;
  * @author Robert Greener
  */
 public class HoaxStatistic extends Statistic {
-    /**
-     * A reference to the initialised Ripley API
-     */
-    private Ripley ripley;
 
     /**
      * A List of incidents that will be searched for hoaxes
@@ -23,14 +18,12 @@ public class HoaxStatistic extends Statistic {
 
     /**
      * Creates a new HoaxStatistic
-     * @param ripley the Ripley API
      * @param incidents A List of incidents that will be searched for hoaxes
      */
-    public HoaxStatistic(Ripley ripley, List<Incident> incidents) {
+    public HoaxStatistic(List<Incident> incidents) {
         // Call the superclass constructor to set the name of the statistic
         super("Number Of Hoaxes");
         // Set the fields
-        this.ripley = ripley;
         this.incidents = incidents;
 
         // Set the data of this statistic, equal to the value returned by calculateData()
