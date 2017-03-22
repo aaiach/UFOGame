@@ -47,8 +47,8 @@ public class SightingsPerDayStatistic extends Statistic {
     @Override
     protected String calculateData() {
     	
-    	//Measures the number of milliseconds between the two dates, then calculates how many days that is
-    	double days = (start.getTime() - end.getTime()) / (1000 * 60 * 60 * 24);
+    	// Measures the number of milliseconds between the two dates, then calculates how many days that is
+    	double days = (end.getTime() - start.getTime()) / (1000 * 60 * 60 * 24);
         return Double.toString(incidents.size()/days);
     }
 }
