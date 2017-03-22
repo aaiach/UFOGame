@@ -3,9 +3,7 @@ package models.statistics;
 import api.ripley.Incident;
 import api.ripley.Ripley;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * HoaxStatistic is a Statistic for the number of hoaxes in a supplied ArrayList of incidents
@@ -45,22 +43,13 @@ public class HoaxStatistic extends Statistic {
      */
     @Override
     protected String calculateData() {
-        // Create a new ArrayList to store additional details of incidents
-        List<String> incidentDetails = new ArrayList<>();
-        /* Uses a stream on incidents, to collect the incident details as a list,
-         * which using the ArrayList.addAll method is added to incidentDetails
-         */
-        incidentDetails.addAll(incidents.stream()
-                .map(i -> ripley.getIncidentDetails(i.getIncidentID()))
-                .collect(Collectors.toList()));
-
         // Set the initial numberOfHoaxes to 0
         int numberOfHoaxes = 0;
 
-        // For each details in incidentDetails
-        for (String details : incidentDetails) {
-            // If the details contains the string "hoax" increment numberOfHoaxes by 1
-            if (details.toLowerCase().contains("hoax")) numberOfHoaxes++;
+        // For each incident in incidents
+        for (Incident i : incidents) {
+            // If the summary contains the string "hoax" increment numberOfHoaxes by 1
+            if (i.getSummary().toLowerCase().contains("hoax")) numberOfHoaxes++;
         }
 
         // Return the numberOfHoaxes as a string
