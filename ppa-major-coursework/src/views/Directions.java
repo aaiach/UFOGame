@@ -1,4 +1,4 @@
-package views.statistics;
+package views;
 
 /**
  * @author Robert Greener.

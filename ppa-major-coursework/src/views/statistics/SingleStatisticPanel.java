@@ -2,6 +2,7 @@ package views.statistics;
 
 import controller.StatisticController;
 import models.statistics.Statistic;
+import views.Directions;
 
 import javax.swing.*;
 import java.awt.*;

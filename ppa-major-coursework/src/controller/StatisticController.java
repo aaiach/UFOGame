@@ -3,7 +3,7 @@ package controller;
 import api.ripley.Ripley;
 import models.statistics.AllStatistics;
 import views.statistics.Area;
-import views.statistics.Directions;
+import views.Directions;
 import views.statistics.StatisticsPanel;
 
 import java.util.ArrayList;
