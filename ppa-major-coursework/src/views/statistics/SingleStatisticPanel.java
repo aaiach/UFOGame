@@ -21,8 +21,8 @@ public class SingleStatisticPanel extends JPanel {
     private StatisticController controller;
 
     public SingleStatisticPanel(StatisticController controller, Area area, Statistic statistic) {
-        this.statisticTitle = new JLabel();
-        this.statisticData = new JLabel();
+        this.statisticTitle = new JLabel("", SwingConstants.CENTER);
+        this.statisticData = new JLabel("", SwingConstants.CENTER);
         this.area = area;
         this.controller = controller;
         setStatistic(statistic);
@@ -44,7 +44,7 @@ public class SingleStatisticPanel extends JPanel {
 
     public void setStatistic(Statistic statistic) {
         this.statistic = statistic;
-        this.statisticTitle.setText(statistic.getName());
+        this.statisticTitle.setText("<html><h1>" + statistic.getName() + "</h1></html>");
         this.statisticData.setText(statistic.getData());
         this.updateUI();
     }

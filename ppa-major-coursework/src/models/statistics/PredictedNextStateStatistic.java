@@ -45,15 +45,7 @@ public class PredictedNextStateStatistic extends Statistic{
         incidents.forEach((i) -> {
             // Get the state
             String state = i.getState();
-            // Attempt to get the full state name
-            String fullStateName = USStates.getFullStateName(state);
-
-            /* If the fullStateName is null (i.e the state is not a US State, District of Columbia,
-             * or a territory of the US) add a sighting with the name of the state returned by i.getState()
-             */
-            if (fullStateName == null) sightingsAtStates.addSighting(state);
-            // Otherwise add a sighting, using the fullStateName
-            else sightingsAtStates.addSighting(state);
+            if (state != null) sightingsAtStates.addSighting(state);
         });
 
         // Return the state with the highest number of sightings
@@ -104,12 +96,12 @@ public class PredictedNextStateStatistic extends Statistic{
          */
         public String getHighestSightingState() {
             // Set the initial highestState key-value pair to a random pair from numberOfSightings
-            Map.Entry<String, Integer> highestState = numberOfSightings.entrySet().iterator().next();
+            Map.Entry<String, Integer> highestState = null;
 
             // For each key-value pair in the numberOfSightings' entrySet
             for (Map.Entry<String, Integer> entry : numberOfSightings.entrySet()) {
                 // If there are more sightings at this entry, set this entry as the highest state
-                if (entry.getValue() > highestState.getValue()) highestState = entry;
+                if (highestState == null || entry.getValue() > highestState.getValue()) highestState = entry;
             }
 
             // Return the key of highestState (which is the state name)

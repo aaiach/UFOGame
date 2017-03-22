@@ -18,7 +18,7 @@ public class StatisticsPanel extends JPanel {
 
     public StatisticsPanel(StatisticController controller, Statistic statisticTopLeft, Statistic statisticTopRight,
                            Statistic statisticBottomLeft, Statistic statisticBottomRight) {
-        this.setLayout(new GridLayout(2, 2));
+        this.setLayout(new GridLayout(2, 2, 15, 15));
         topLeft = new SingleStatisticPanel(controller, Area.TOP_LEFT, statisticTopLeft);
         topRight = new SingleStatisticPanel(controller, Area.TOP_RIGHT, statisticTopRight);
         bottomLeft = new SingleStatisticPanel(controller, Area.BOTTOM_LEFT, statisticBottomLeft);
