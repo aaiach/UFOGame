@@ -10,7 +10,6 @@ import org.jdatepicker.impl.UtilDateModel;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
@@ -41,11 +40,6 @@ public class MainWindow extends JFrame {
     private JButton rightButton;
 
     /**
-     * This is the text the date will be prefixed by
-     */
-    private String datePrefix;
-
-    /**
      * This is what stores the 'To' Date
      */
     private UtilDateModel dateModelTo;
@@ -54,11 +48,6 @@ public class MainWindow extends JFrame {
      * This is what stores the 'From' Date
      */
     private UtilDateModel dateModelFrom;
-
-    /**
-     * This is how the date (at the bottom of the screen - last updated) should be formatted
-     */
-    private SimpleDateFormat dateFormat;
 
     /**
      * The controller for the MainWindow
@@ -77,9 +66,6 @@ public class MainWindow extends JFrame {
         // set the default close operation to DISPOSE_ON_CLOSE
         this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 
-        // Set the date format e.g. Wed Mar 22 15:05:32 GMT 2017
-        dateFormat = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy");
-
         this.panelOnDisplay = panelToDisplay;
         this.controller = controller;
 
@@ -96,9 +82,8 @@ public class MainWindow extends JFrame {
         rightButton = new JButton(">");
         rightButton.addActionListener((e) -> controller.move(Directions.RIGHT));
 
-        // Create the datePrefix and dateLabel (center-aligned)
-        datePrefix = "Last set of reported incidents: ";
-        dateLabel = new JLabel(datePrefix + "-", SwingConstants.CENTER);
+        // dateLabel (center-aligned)
+        dateLabel = new JLabel("Last set of reported incidents: -", SwingConstants.CENTER);
 
         // Add the left and right buttons as well as the date label to jpSouth
         jpSouth.add(leftButton, BorderLayout.WEST);
@@ -222,11 +207,11 @@ public class MainWindow extends JFrame {
 
     /**
      * Set the time the info was last updated
-     * @param lastUpdated the Date when the data was updated
+     * @param date the text to update it with
      */
-    public void setLastUpdated (Date lastUpdated) {
+    public void setLastUpdated (String date) {
         // Update the label, with the date formatted by dateFormat
-        dateLabel.setText(datePrefix + dateFormat.format(lastUpdated));
+        dateLabel.setText(date);
     }
 
     /**

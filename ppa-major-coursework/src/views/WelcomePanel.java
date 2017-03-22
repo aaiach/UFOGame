@@ -18,7 +18,7 @@ public class WelcomePanel extends JPanel {
 
     public void addText(String text, boolean bold) {
         if (bold) {
-            this.add(new JLabel("<b>" + text + "</b>"));
+            this.add(new JLabel("<html><b>" + text + "</b></html>"));
         } else {
             this.add(new JLabel(text));
         }
