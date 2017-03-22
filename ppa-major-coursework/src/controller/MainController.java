@@ -2,11 +2,13 @@ package controller;
 
 import api.ripley.Incident;
 import api.ripley.Ripley;
+import views.Directions;
 import views.MainWindow;
 import views.WelcomePanel;
 
 import javax.swing.*;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -14,6 +16,7 @@ import java.util.List;
  * Created by robert on 21/03/17.
  */
 public class MainController {
+    private SimpleDateFormat dateFormat;
     private Ripley ripley;
     private MainWindow window;
     private List<Incident> incidents;
@@ -27,7 +30,8 @@ public class MainController {
 
     public MainController() {
         ripley = new Ripley(PRIVATE_API_KEY, PUBLIC_API_KEY);
-        ripleyAPIDateFormat = new SimpleDateFormat("yyyy-mm-dd");
+        ripleyAPIDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         timeFormat = new SimpleDateFormat("HH:mm:ss");
         String firstLine = "Welcome to the Ripley API v" + ripley.getVersion() +
                 "\nPlease select from the dates above, in order to" +
@@ -35,7 +39,9 @@ public class MainController {
         WelcomePanel welcomePanel = new WelcomePanel();
         welcomePanel.addText(firstLine);
         window = new MainWindow(this, welcomePanel);
-        panels.set(0, welcomePanel);
+        panels = new ArrayList<>();
+        panels.add(0, welcomePanel);
+        window.enableButtons(false);
     }
 
     public void reCalculateData(Date dateFrom, Date dateTo) {
@@ -49,18 +55,33 @@ public class MainController {
                     "\nbegin analysing UFO sighting data";
             welcomePanel.clear();
             welcomePanel.addText(firstLine);
-            welcomePanel.addText("Date range selected: " +
-                    ripleyAPIDateFormat.format(dateFrom) + " to " + ripleyAPIDateFormat.format(dateTo));
+            welcomePanel.addText("Date range selected: " + dateFormat.format(dateFrom) + " to " +
+                    dateFormat.format(dateTo));
             welcomePanel.addText("Grabbing data....");
             Date startTime = new Date();
             incidents = ripley.getIncidentsInRange(ripleyAPIDateFormat.format(dateFrom), ripleyAPIDateFormat.format(dateTo));
+            StatisticController statisticController = new StatisticController(ripley, incidents, dateFrom, dateTo);
+            panels.add(1, statisticController.getPanel());
             Date endTime = new Date();
             Date timeDifference = new Date(endTime.getTime() - startTime.getTime());
             welcomePanel.addText("Data grabbed in: " + timeFormat.format(timeDifference));
             welcomePanel.addText("Please now interact with this data using the" +
                     "\nbuttons to the left and right.");
             window.setLastUpdated(new Date());
+            window.enableButton(Directions.RIGHT, true);
         }
+    }
+
+    public void move (Directions direction) {
+        int index = panels.indexOf(window.getPanelOnDisplay());
+        int newIndex = index + direction.getValue();
+        if (newIndex == 0) window.enableButton(Directions.LEFT, false);
+        else if (newIndex == panels.size() - 1) window.enableButton(Directions.RIGHT, false);
+        window.setPanelOnDisplay(panels.get(newIndex));
+    }
+
+    public static void main (String[] args) {
+        MainController controller = new MainController();
     }
 
 }

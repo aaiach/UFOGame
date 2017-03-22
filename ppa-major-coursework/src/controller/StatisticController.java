@@ -5,7 +5,6 @@ import api.ripley.Ripley;
 import models.statistics.*;
 import views.Directions;
 import views.statistics.Area;
-import views.Directions;
 import views.statistics.StatisticsPanel;
 
 import java.util.ArrayList;

@@ -91,7 +91,10 @@ public class MainWindow extends JFrame {
 
         // Create left and right buttons
         leftButton = new JButton("<");
+        leftButton.addActionListener((e) -> controller.move(Directions.LEFT));
+
         rightButton = new JButton(">");
+        rightButton.addActionListener((e) -> controller.move(Directions.RIGHT));
 
         // Create the datePrefix and dateLabel (center-aligned)
         datePrefix = "Last set of reported incidents: ";
@@ -210,21 +213,11 @@ public class MainWindow extends JFrame {
     }
 
     /**
-     * Get the from Date picked
-     * @return the from Date (or null, if no date has been selected)
+     * Gets the current panel on display
+     * @return the current panel on display
      */
-    public Date getFromDate() {
-        // Get the value from the UtilDateModel
-        return dateModelFrom.getValue();
-    }
-
-    /**
-     * Get the to Date picked
-     * @return the to Date (or null, if no date has been selected)
-     */
-    public Date getToDate() {
-        // Get the value from the UtilDateModel
-        return dateModelTo.getValue();
+    public JPanel getPanelOnDisplay() {
+        return panelOnDisplay;
     }
 
     /**
