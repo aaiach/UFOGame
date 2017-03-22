@@ -26,6 +26,7 @@ public class MostCommonStatistic extends Statistic {
         // Calls the superclass constructor, setting the name of the statistic
         super("Most common shape of UFO");
 
+        this.incidents = incidents;
         // Sets the data of the statistic, to the value returned by calculateData
         setData(calculateData());
     }
@@ -43,11 +44,12 @@ public class MostCommonStatistic extends Statistic {
         for (Incident incident : incidents) {
             // Get the shape
             String shape = incident.getShape();
-
-            // If shapes already contains that shape, add one to the number of incidents containing this shape
-            if (shapes.containsKey(shape)) shapes.put(shape, shapes.get(shape) + 1);
-            // Otherwise set the number of incidents containing this shape to 1
-            else shapes.put(shape, 1);
+            if (shape != null) {
+                // If shapes already contains that shape, add one to the number of incidents containing this shape
+                if (shapes.containsKey(shape)) shapes.put(shape, shapes.get(shape) + 1);
+                    // Otherwise set the number of incidents containing this shape to 1
+                else shapes.put(shape, 1);
+            }
         }
 
         // Set the initial largestEntry to null
