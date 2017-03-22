@@ -22,6 +22,7 @@ public class WelcomePanel extends JPanel {
         } else {
             this.add(new JLabel(text));
         }
+        this.updateUI();
     }
 
     public void clear() {
