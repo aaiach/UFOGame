@@ -1,7 +1,11 @@
 package controller.statistics;
 
 /**
- * TODO: Implement this statistic
+ * This statistic determines the percentage of UFO sightings reported during drinking hours,
+ * i.e. between 5pm and 11pm, in which the people were most likely to be intoxicated.
+ * 
+ * This time period was officially categorized by the Economist, who used the statistics
+ * compiled by the National UFO Reporting Center (NUFORC) to analyze 'peak times' for UFO reports.
  *
  * @author Shantanu Jha
  */
