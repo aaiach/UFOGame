@@ -1,11 +1,13 @@
 package controller.statistics;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import api.ripley.Ripley;
 
 /**
- * This statistic finds the proportion of all sightings that occurred in the US.
+ * This statistic finds the most sightings in a selected list that were reported in one day.
  *
  * @author Stevan Warren
  */
@@ -25,24 +27,34 @@ public class StevanWarrenStatistic extends Statistic {
     }
 
     /**
-     * Calculates the proportion of sightings in the US.
-     * @return Percentage of sightings that occurred in the US
+     * Calculates the most sightings recorded in a day.
      */
     @Override
     protected String calculateData() {
-    	// To find the proportion, find the total number of sightings where a state is specified,
-    	// divide it by the total number of sightings and muliply by 100.
-    	int USSightings = 0;
+    	// This hashmap will store each unique date in the list of incidents, mapped to the number of sightings recorded on that date.
+    	HashMap<String, Integer> days = new HashMap<String, Integer>();
+    	String date;
+    	
     	for (Incident incident : incidents) {
-    		if (!incident.getState().equals("Not specified.")) {
-    			USSightings++;
+    		// Retrieves the date of the incident, which is the first 9 characters of the dateAndTime.
+    		date = incident.getDateAndTime().substring(0, 10);
+    		// If the date is already in the HashMap, then increment the number of sightings stored for that day.
+    		if (days.containsKey(date)) {
+    			days.put(date, days.get(date) + 1);
+    		// Otherwise, create a new mapping from that date to the value '1'.
+    		} else {
+    			days.put(date, 1);
     		}
     	}
     	
-    	double proportion = USSightings / incidents.size() * 100;
+    	int maxSightings = 0;
+    	// This loop iterates through the hashmap to find the date with the highest sightings and records that number.
+    	for (Map.Entry<String, Integer> entry : days.entrySet()) {
+    		if (entry.getValue() > maxSightings) {
+    			maxSightings = entry.getValue();
+    		}
+    	}
     	
-    	// The end result will be rounded to 2 decimal places.
-    	proportion = Math.round(proportion * 100) / 100;
-        return proportion + "%";
+        return "" + maxSightings;
     }
 }
