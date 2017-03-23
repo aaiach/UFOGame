@@ -30,20 +30,19 @@ public class StevanWarrenStatistic extends Statistic {
      */
     @Override
     protected String calculateData() {
-    	// To find the proportion, find the total number of sightings where the state is not specified
+    	// To find the proportion, find the total number of sightings where a state is specified,
     	// divide it by the total number of sightings and muliply by 100.
-    	int nonUSSightings = 0;
+    	int USSightings = 0;
     	for (Incident incident : incidents) {
     		if (!incident.getState().equals("Not specified.")) {
-    			nonUSSightings++;
+    			USSightings++;
     		}
     	}
     	
-    	double proportion = nonUSSightings / incidents.size() * 100;
+    	double proportion = USSightings / incidents.size() * 100;
     	
     	// The end result will be rounded to 2 decimal places.
     	proportion = Math.round(proportion * 100) / 100;
         return proportion + "%";
-        
     }
 }
