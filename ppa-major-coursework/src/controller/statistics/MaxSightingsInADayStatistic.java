@@ -11,15 +11,19 @@ import api.ripley.Ripley;
  *
  * @author Stevan Warren
  */
-public class StevanWarrenStatistic extends Statistic {
+public class MaxSightingsInADayStatistic extends Statistic {
+    /**
+     * The list of incidents
+     */
 	private List<Incident> incidents;
 	
     /**
-     * Creates a new StevanWarrenStatistic
+     * Creates a new MaxSightingsInADayStatistic
+     * @param incidents A list of incidents to find the highest day
      */
-    public StevanWarrenStatistic(List<Incident> incidents) {
+    public MaxSightingsInADayStatistic(List<Incident> incidents) {
         // Calls the superclass constructor, setting the name of the statistic
-        super("Percentage of US sightings");
+        super("Max sightings in a day");
         this.incidents = incidents;
 
         // Sets the data of the statistic, to the value returned by calculateData
@@ -28,6 +32,7 @@ public class StevanWarrenStatistic extends Statistic {
 
     /**
      * Calculates the most sightings recorded in a day.
+     * @return the maximum number of sightings that occured within one day
      */
     @Override
     protected String calculateData() {
