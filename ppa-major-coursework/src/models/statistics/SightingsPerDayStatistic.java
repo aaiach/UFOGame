@@ -54,6 +54,7 @@ public class SightingsPerDayStatistic extends Statistic {
     protected String calculateData() {
     	// Measures the number of milliseconds between the two dates, then calculates how many days that is
     	double days = (end.getTime() - start.getTime()) / (1000 * 60 * 60 * 24);
-        return Double.toString(incidents.size()/days);
+        // Return the average incidents per day, with 2 decimal places
+        return String.format("%.2f", incidents.size() / days);
     }
 }
