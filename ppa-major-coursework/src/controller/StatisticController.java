@@ -47,8 +47,8 @@ public class StatisticController {
         allStatistics.add(new YouTubeSightingsStatistic(startDate, endDate));
         allStatistics.add(new MostCommonStatistic(incidents));
         allStatistics.add(new SightingsPerDayStatistic(incidents, startDate, endDate));
-        allStatistics.add(new StevanWarrenStatistic());
-        allStatistics.add(new ShantanuJhaStatistic());
+        allStatistics.add(new DrinkingHoursSightingsStatistic(incidents));
+        allStatistics.add(new MaxSightingsInADayStatistic(incidents));
 
         // Set the initial visibleIndices to [0,1,2,3]
         visibleIndices = new ArrayList<>(Arrays.asList(0,1,2,3));

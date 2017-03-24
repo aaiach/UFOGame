@@ -1,10 +1,10 @@
-package controller.statistics;
+package models.statistics;
+
+import api.ripley.Incident;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import api.ripley.Ripley;
 
 /**
  * This statistic finds the most sightings in a selected list that were reported in one day.
