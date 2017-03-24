@@ -14,7 +14,9 @@ import java.util.List;
  */
 public class DrinkingHoursSightingsStatistic extends Statistic {
 
-	// the list of incidents to look at
+    /**
+     * The list of incidents to look at
+     */
     private List<Incident> incidents;
     
     /**
