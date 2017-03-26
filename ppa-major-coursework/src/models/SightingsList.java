@@ -9,25 +9,47 @@ package models;
  */
 public class SightingsList extends Observable {
 
-	private String state;
+	private String stateName;
+	private String abbreviatedStateName;
 	private List<Incident> incidents;
+	private List<ParsedIncident> parsedIncidents;
 	
-	public SightingsList(String state, List<Incident> incidents) {
+	public SightingsList(String stateName, String abbreviatedStateName, List<Incident> incidents) {
 		
-		this.state = state;
+		this.stateName = stateName;
+		this.abbreviatedStateName = abbreviatedStateName;
 		this.incidents = incidents;
 		
-	}
-	
-	public void sortIncidents(Object key) {
-		
-		
+		parseIncidents();
 		
 	}
 	
-	public String getState() {
+	public void parseIncidents() {
 		
-		return state;
+		for (Incident incident : incidents) {
+			
+			ParsedIncident parsedIncident = new ParsedIncident();
+			parsedIncident.set
+			
+		}
+		
+	}
+	
+	public void sortIncidents(String sortOption) {
+		
+		
+		
+	}
+	
+	public String getStateName() {
+		
+		return stateName;
+		
+	}
+	
+	public String getAbbreviatedStateName() {
+		
+		return abbreviatedStateName;
 		
 	}
 	
