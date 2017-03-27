@@ -65,6 +65,9 @@ public class MainController {
         // Create an instance of ripley
         ripley = new Ripley(PRIVATE_API_KEY, PUBLIC_API_KEY);
 
+        // Print acknowledgment string to STDOUT
+        System.out.println(ripley.getAcknowledgementString());
+
         // Set the date format required for the ripley API
         ripleyAPIDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
