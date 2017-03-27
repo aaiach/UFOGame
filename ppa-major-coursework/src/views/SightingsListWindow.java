@@ -31,7 +31,7 @@ public class SightingsListWindow extends JFrame implements Observer {
 		String[] sortOptions = {"-", "Date", "City", "Shape", "Duration", "Posted"};
 		JComboBox sortOptionsList = new JComboBox(sortOptions);
 		sortOptionsList.addActionListener(controller);
-		
+		//
 		topPanel.add(sortOptionsList);
 		
 	}

@@ -22,7 +22,7 @@ public class SightingsList extends Observable {
 		
 		this.stateName = stateName;
 		this.abbreviatedStateName = abbreviatedStateName;
-		this.incidents = incidents;
+		this.incidents = incidents;//
 		
 		parseIncidents();
 		

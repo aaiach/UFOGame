@@ -29,7 +29,7 @@ public class SightingsListController implements ActionListener {
 		JComboBox cb = (JComboBox)e.getSource();
 		String sortOption = (String)cb.getSelectedItem();
 		sightingsList.sortIncidents(sortOption);
-		
+		//
 	}
 	
 }
