@@ -55,7 +55,7 @@ public class YouTubeSightingsStatistic extends Statistic {
         HashMap<String, String> params = new HashMap<>();
 
         // q is the text of the search
-        params.put("q", "ufo sighting");
+        params.put("q", "reported ufo sighting");
 
         // maxResults is set to 0, so that the api doesn't return links to the videos
         params.put("maxResults", "0");
