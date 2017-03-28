@@ -1,6 +1,6 @@
-package game.view;
-import game.control.Control;
-import game.model.GameEnv;
+package views.game;
+import controller.GameController;
+import models.game.GameEnv;
 
 import javax.swing.JFrame;
 
@@ -15,9 +15,9 @@ public class View extends JFrame {
 
 	public View() {
 		
-		//Copy this wherever you want to instantiate the game
+		//Copy this wherever you want to instantiate the views.models.game
 		GameEnv game = new GameEnv();
-		Control c = new Control(game);
+		GameController c = new GameController(game);
 		GamePanel p = new GamePanel(c);
 		Menu m = new Menu(p);
 		

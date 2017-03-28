@@ -1,16 +1,16 @@
-package game.control;
-import game.model.GameEnv;
+package controller;
+import models.game.GameEnv;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-public class Control {
+public class GameController {
 
-	//The control controls the model : the game and the Listeners
+	//The control controls the model : the views.models.game and the Listeners
 	private ArrowListener Al= new ArrowListener();
 	private GameEnv game;
 
-	public Control(GameEnv ge) {
+	public GameController(GameEnv ge) {
 		this.game = ge;
 	}
 

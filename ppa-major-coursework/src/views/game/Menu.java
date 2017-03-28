@@ -1,4 +1,4 @@
-package game.view;
+package views.game;
 
 
 import java.awt.BorderLayout;
@@ -23,12 +23,12 @@ public class Menu extends JPanel implements Observer{
 
 	private static final long serialVersionUID = 9097057926165173951L;
 
-	//Default game difficulty
+	//Default views.models.game difficulty
 	private int difficulty = 1;
 
 	private Timer timer;
 
-	//Panels needed in the game : the menu, won/lost screens and the game panel
+	//Panels needed in the views.models.game : the menu, won/lost screens and the views.models.game panel
 	private JPanel menuPanel = new JPanel();
 	private JPanel wonPanel = new JPanel();
 	private JPanel lostPanel = new JPanel();
@@ -64,7 +64,7 @@ public class Menu extends JPanel implements Observer{
 		menuPanel.add(Box.createVerticalStrut(80));
 		start = createSimpleButton("      Start      ");
 		
-		//Button Listener which starts the game with selected difficulty when pressed
+		//Button Listener which starts the views.models.game with selected difficulty when pressed
 		start.addActionListener(new ActionListener(){
 
 			@Override
@@ -140,7 +140,7 @@ public class Menu extends JPanel implements Observer{
 		return button;
 	}
 
-	//Ends the game when notified by showing an end pannel and bringing the user back to the Menu
+	//Ends the views.models.game when notified by showing an end pannel and bringing the user back to the Menu
 	@Override
 	public void update(Observable o, Object arg) {
 				

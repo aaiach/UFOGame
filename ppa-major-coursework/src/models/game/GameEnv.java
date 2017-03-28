@@ -1,5 +1,5 @@
-package game.model;
-import game.view.GamePanel;
+package models.game;
+import views.game.GamePanel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,9 +8,9 @@ import java.util.Random;
 
 
 public class GameEnv extends Observable{
-	//Model : The game consists of a collection of UFOS, a Target, and is defined by its starting number of UFOs, UFOs required for a loose, and initial speed;
+	//Model : The views.models.game consists of a collection of UFOS, a Target, and is defined by its starting number of UFOs, UFOs required for a lose, and initial speed;
 
-	private ArrayList<UFO> ufos = new ArrayList<UFO>();
+	private ArrayList<UFO> ufos = new ArrayList<>();
 	private Coordinates target = new Coordinates(GamePanel.Width/2 - 55, GamePanel.Height/2 - 55);
 	private int maxUFO, minUFO, speedCoefficient;
 
@@ -158,7 +158,7 @@ public class GameEnv extends Observable{
 		return null;
 	}
 
-	//Sets the difficulty of the game, which depends on the speed coefficient, the start and end number of UFOs
+	//Sets the difficulty of the views.models.game, which depends on the speed coefficient, the start and end number of UFOs
 	public void setDifficulty(int dif){
 		if(dif == 1){
 			this.minUFO =3;

@@ -1,5 +1,5 @@
-package game.model;
-import game.view.GamePanel;
+package models.game;
+import views.game.GamePanel;
 
 public class UFO extends Coordinates{
 

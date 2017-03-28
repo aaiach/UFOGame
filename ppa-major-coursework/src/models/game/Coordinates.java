@@ -1,7 +1,7 @@
-package game.model;
+package models.game;
 import java.util.Observable;
 
-//Models all elements of the game which are positioned on the Panel
+//Models all elements of the views.models.game which are positioned on the Panel
 public class Coordinates extends Observable{
 	
 	private int x;

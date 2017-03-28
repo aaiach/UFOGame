@@ -1,6 +1,6 @@
-package game.view;
-import game.control.Control;
-import game.model.UFO;
+package views.game;
+import controller.GameController;
+import models.game.UFO;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -24,23 +24,23 @@ public class GamePanel extends JPanel{
 	//Width and Height of the panel, must always be identical to frame size
 	public static final int Width = 800;
 	public static final int Height = 600;
-	//Keeps track of the outcome of the last game
+	//Keeps track of the outcome of the last views.models.game
 	public boolean lost;
-	//Timer which coordinates all events within the game
+	//Timer which coordinates all events within the views.models.game
 	private Timer timer;
 
-	private Control control;
+	private GameController control;
 
 	private int time = 0;
 	
-	public GamePanel(Control ctrl) {
+	public GamePanel(GameController ctrl) {
 		this.control = ctrl;
 	}
 
-	//Method which runs the game
+	//Method which runs the views.models.game
 	public void start(){
 
-		//The game follow the timer, and the view is updated periodically
+		//The views.models.game follow the timer, and the view is updated periodically
 		timer = new Timer(20, new ActionListener(){
 
 			Random r = new Random();
@@ -50,7 +50,7 @@ public class GamePanel extends JPanel{
 
 				lost = control.getGame().hasLost();
 				
-				//Checks if the game has ended
+				//Checks if the views.models.game has ended
 				if(control.getGame().hasLost() || control.getGame().hasWon()){
 					control.getGame().getUFOs().clear();
 					timer.stop();
@@ -131,7 +131,7 @@ public class GamePanel extends JPanel{
 		return new Dimension(Width, Height);
 	}
 	
-	public Control getControl(){
+	public GameController getControl(){
 		return control;
 	}
 	
@@ -139,7 +139,7 @@ public class GamePanel extends JPanel{
 		return lost;
 	}
 
-	//Method which returns a color from the Green to Red range depending on how close a player is to loosing the game
+	//Method which returns a color from the Green to Red range depending on how close a player is to loosing the views.models.game
 	public Color getColorfromUFO(){
 		Color b;
 		

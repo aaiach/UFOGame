@@ -1,13 +1,8 @@
-package game.view;
-import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.RenderingHints;
-
-import javax.swing.AbstractButton;
-import javax.swing.JComponent;
+package views.game;
+import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.plaf.basic.BasicButtonUI;
+import java.awt.*;
 /**
  * 
  * @author Peter Walser
