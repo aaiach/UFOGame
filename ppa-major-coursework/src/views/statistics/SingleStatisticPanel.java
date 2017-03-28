@@ -15,6 +15,11 @@ import java.awt.event.ActionEvent;
  */
 class SingleStatisticPanel extends JPanel {
     /**
+	 * This is the serial version UID used for serialising this class
+	 */
+	private static final long serialVersionUID = -6468119927144342037L;
+
+	/**
      * The title of the statistic
      */
     private JLabel statisticTitle;

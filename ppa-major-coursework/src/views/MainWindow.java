@@ -20,6 +20,11 @@ import java.util.*;
  */
 public class MainWindow extends JFrame {
     /**
+	 * This is the serial version UID used for serialising this class
+	 */
+	private static final long serialVersionUID = -3546518973698851133L;
+
+	/**
      * This is the JPanel that is currently being displayed
      */
     private JPanel panelOnDisplay;
