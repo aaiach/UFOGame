@@ -6,6 +6,7 @@ import org.jdatepicker.impl.DateComponentFormatter;
 import org.jdatepicker.impl.JDatePanelImpl;
 import org.jdatepicker.impl.JDatePickerImpl;
 import org.jdatepicker.impl.UtilDateModel;
+import views.game.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -164,6 +165,15 @@ public class MainWindow extends JFrame {
 
         // Add the new JPanel to the window
         this.add(panelToDisplay, BorderLayout.CENTER);
+
+        // Set the window to be resizable
+        this.setResizable(true);
+
+        // If the panel is the GamePanel or the menu for it, set the windows size
+        if (panelToDisplay instanceof GamePanel || panelToDisplay instanceof views.game.Menu) {
+            this.setSize(GamePanel.Width + 100, GamePanel.Height + 100);
+            this.setResizable(false);
+        }
 
         // Redraw the window
         this.revalidate();
