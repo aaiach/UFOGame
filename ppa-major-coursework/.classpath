@@ -10,5 +10,6 @@
 	<classpathentry kind="lib" path="ppa-major-coursework/lib/natty-0.14-SNAPSHOT.jar">
 	<classpathentry kind="lib" path="ppa-major-coursework/lib/natty-0.14-SNAPSHOT-doc.jar">
 	<classpathentry kind="lib" path="ppa-major-coursework/lib/slf4j-simple-1.7.22.jar">
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
