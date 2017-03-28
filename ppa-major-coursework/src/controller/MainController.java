@@ -2,9 +2,12 @@ package controller;
 
 import api.ripley.Incident;
 import api.ripley.Ripley;
+import models.game.GameEnv;
 import views.Directions;
 import views.MainWindow;
 import views.WelcomePanel;
+import views.game.GamePanel;
+import views.game.Menu;
 
 import javax.swing.*;
 import java.text.SimpleDateFormat;
@@ -57,6 +60,10 @@ public class MainController {
      * The first line to display on the WelcomePanel
      */
     private String firstLine;
+    private final GameEnv game;
+    private final GameController gameController;
+    private final GamePanel gamePanel;
+    private final Menu menu;
 
     /**
      * Creates a new MainController, that will run the whole program
@@ -93,6 +100,12 @@ public class MainController {
         // Create an ArrayList to store the JPanels of the display in order
         panels = new ArrayList<>();
         panels.add(0, welcomePanel);
+
+        game = new GameEnv();
+        gameController = new GameController(game);
+        gamePanel = new GamePanel(gameController);
+        menu = new Menu(gamePanel);
+        game.addObserver(menu);
     }
 
     /**
@@ -156,6 +169,8 @@ public class MainController {
                 // Change last updated time
                 window.setLastUpdated(ripley.getLastUpdated());
 
+                panels.add(2, menu);
+
                 // Enable the right button
                 window.enableButton(Directions.RIGHT, true);
             }
@@ -179,6 +194,16 @@ public class MainController {
         // If there is no JPanel to the right, disable the right button
         else if (newIndex == panels.size() - 1) window.enableButton(Directions.RIGHT, false);
         // Change the window's panel
+        JPanel newPanel = panels.get(newIndex);
+
+        if (newPanel instanceof Menu || newPanel instanceof GamePanel) {
+            window.setFocusable(true);
+            window.addKeyListener(gameController.getAl());
+        } else {
+            window.setFocusable(false);
+            window.removeKeyListener(gameController.getAl());
+        }
+
         window.setPanelOnDisplay(panels.get(newIndex));
     }
 }
