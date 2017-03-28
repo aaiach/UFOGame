@@ -21,6 +21,7 @@ public class SightingsAtStates {
 
     /**
      * Creates a new SightingsAtStates
+     * @param incidents The incidents to count
      */
     public SightingsAtStates(List<Incident> incidents) {
         // Initialise the numberOfSightings HashMap
