@@ -53,6 +53,7 @@ public class MainWindow extends JFrame {
     /**
      * Makes a new MainWindow
      *
+     * @param controller The controller for the MainWindow
      * @param panelToDisplay The initial JPanel to display
      */
     public MainWindow(MainController controller, JPanel panelToDisplay) {
