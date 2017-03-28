@@ -50,7 +50,7 @@ public class MapPanel extends JPanel {
 	 */
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		g.drawImage(backgroundMap, 0, 0, WIDTH, HEIGHT, this);
+		g.drawImage(backgroundMap, 0, 0, getWidth(), getHeight(), this);
 	}
 	
 	/**
