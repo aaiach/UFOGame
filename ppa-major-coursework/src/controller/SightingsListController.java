@@ -4,8 +4,7 @@
 package controller;
 
 import java.awt.event.*;
-
-import javax.swing.JComboBox;
+import javax.swing.*;
 
 import models.*;
 
@@ -29,7 +28,7 @@ public class SightingsListController implements ActionListener {
 		JComboBox cb = (JComboBox)e.getSource();
 		String sortOption = (String)cb.getSelectedItem();
 		sightingsList.sortIncidents(sortOption);
-		//
+		
 	}
 	
 }

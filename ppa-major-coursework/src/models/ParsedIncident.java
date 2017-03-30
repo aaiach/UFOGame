@@ -74,7 +74,15 @@ public class ParsedIncident {
 	
 	public void setDatePosted(LocalDate datePosted) {
 		
-		this.datePosted = datePosted;//
+		this.datePosted = datePosted;
+		
+	}
+	
+	@Override
+	public String toString() {
+		
+		String dateTime = dateAndTime.toString();
+		return "Time: " + dateTime.replace("T", " ") + " City: " + city + " Shape: " + shape + " Duration: " + duration + " Posted: " + datePosted;
 		
 	}
 	
