@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 import java.time.LocalDate;
 
 /**
- * @author bunny
+ * @author Shantanu Shekhar Jha
  *
  */
 public class ParsedIncident {
@@ -17,6 +17,8 @@ public class ParsedIncident {
 	private String shape;
 	private int duration;
 	private LocalDate datePosted;
+	private String incidentID;
+	private String summary;
 	
 	public LocalDateTime getDateAndTime() {
 		
@@ -47,7 +49,19 @@ public class ParsedIncident {
 		return datePosted;
 		
 	}
+	
+	public String getIncidentID() {
+		
+		return incidentID;
+		
+	}
 
+	public String getSummary() {
+		
+		return summary;
+		
+	}
+	
 	public void setDateAndTime(LocalDateTime dateAndTime) {
 		
 		this.dateAndTime = dateAndTime;
@@ -75,6 +89,18 @@ public class ParsedIncident {
 	public void setDatePosted(LocalDate datePosted) {
 		
 		this.datePosted = datePosted;
+		
+	}
+	
+	public void setIncidentID(String incidentID) {
+		
+		this.incidentID = incidentID;
+		
+	}
+	
+	public void setSummary(String summary) {
+		
+		this.summary = summary;
 		
 	}
 	
