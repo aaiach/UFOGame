@@ -2,7 +2,7 @@ package controller;
 
 import api.ripley.Incident;
 import api.ripley.Ripley;
-import mappanelclasses.MapPanel;
+import views.MapPanel;
 import models.game.GameEnv;
 import views.Directions;
 import views.MainWindow;
