@@ -4,7 +4,7 @@ import java.util.Observable;
 /**
  * Models all elements of the game which are positioned on the Panel
  * 
- * @author aaiach
+ * @author Adriel Aiach
  */
 public class Coordinates extends Observable{
 	

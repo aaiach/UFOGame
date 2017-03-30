@@ -7,7 +7,7 @@ import javax.swing.JFrame;
 /**
  * Class used to test the whole game on a JFrame
  * 
- * @author aaiach
+ * @author Adriel Aiach
  *
  */
 public class View extends JFrame {

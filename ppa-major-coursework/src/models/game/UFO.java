@@ -6,7 +6,7 @@ import views.game.GamePanel;
  * 
  * UFO extends Coordinates as each UFO will be an element positioned on the panel
  * 
- * @author aaiach
+ * @author Adriel Aiach
  */
 public class UFO extends Coordinates{
 

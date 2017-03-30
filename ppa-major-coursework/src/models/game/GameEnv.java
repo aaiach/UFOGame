@@ -9,7 +9,7 @@ import java.util.Random;
 /**
  * Models the entire game by handling and positioning all elements including UFOs and the Target
  * 
- * @author aaiach
+ * @author Adriel Aiach
  *
  */
 public class GameEnv extends Observable{

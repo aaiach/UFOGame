@@ -19,7 +19,7 @@ import javax.swing.Timer;
 /**
  * JPanel which contains the executing game
  * 
- * @author aaiach
+ * @author Adriel Aiach
  *
  */
 public class GamePanel extends JPanel{

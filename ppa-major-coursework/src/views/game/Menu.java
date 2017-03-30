@@ -22,7 +22,7 @@ import javax.swing.Timer;
 /**
  * JPanel which contains all panels, including the main Menu, the game and end panels
  * 
- * @author aaiach
+ * @author Adriel Aiach
  *
  */
 public class Menu extends JPanel implements Observer{

@@ -7,7 +7,7 @@ import java.awt.event.KeyListener;
 /**
  * Class which controls the game by always handling the same instance of a GameEnv and the KeyListener
  * 
- * @author aaiach
+ * @author Adriel Aiach
  *
  */
 public class GameController {
@@ -48,7 +48,7 @@ public class GameController {
 	/**
 	 * ArrowListener which listens to the pressing and releasing of arrows, and updates the permissions the target has to move
 	 * 
-	 * @author aaiach
+	 * @author Adriel Aiach
 	 *
 	 */
 	class ArrowListener implements KeyListener {
