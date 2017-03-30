@@ -6,6 +6,7 @@ package models;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -15,7 +16,7 @@ import com.joestelmach.natty.*;
 import api.ripley.*;
 
 /**
- * @author bunny
+ * @author Shantanu Shekhar Jha
  *
  */
 public class SightingsList extends Observable {
@@ -24,18 +25,26 @@ public class SightingsList extends Observable {
 	private String abbreviatedStateName;
 	private List<Incident> incidents;
 	private List<ParsedIncident> parsedIncidents;
+	private List<ParsedIncident> originalParsedIncidents;
+	 
+	private static final String PRIVATE_API_KEY = "90tLI3CRs9iyVD6ql2OMtA==";
+	private static final String PUBLIC_API_KEY = "lBgm4pRv9wjVqL46EnH7ew==";
+	private Ripley ripley;
 	
 	public SightingsList(String stateName, String abbreviatedStateName, List<Incident> incidents) {
 		
 		this.stateName = stateName;
 		this.abbreviatedStateName = abbreviatedStateName;
 		this.incidents = incidents;
+		ripley = new Ripley(PRIVATE_API_KEY, PUBLIC_API_KEY);
 		
 		parseIncidents();
 		
 	}
 	
 	public void parseIncidents() {
+		
+		parsedIncidents = new ArrayList<ParsedIncident>();
 		
 		for (Incident incident : incidents) {
 			
@@ -45,8 +54,17 @@ public class SightingsList extends Observable {
 			parsedIncident.setShape(incident.getShape());
 			parsedIncident.setDuration(parseDuration(incident.getDuration()));
 			parsedIncident.setDatePosted(parseDatePosted(incident.getPosted()));
+			parsedIncident.setIncidentID(incident.getIncidentID());
+			parsedIncident.setSummary(incident.getSummary());
 			
 			parsedIncidents.add(parsedIncident);
+			
+		}
+		
+		originalParsedIncidents = new ArrayList<ParsedIncident>();
+		for (ParsedIncident parsedIncident : parsedIncidents) {
+			
+			originalParsedIncidents.add(parsedIncident);
 			
 		}
 		
@@ -83,7 +101,14 @@ public class SightingsList extends Observable {
 			String syntaxTree = dateGroup.getSyntaxTree().toStringTree();
 			String[] splits = syntaxTree.split(" ");
 			
-			int value = Integer.parseInt(splits[splits.length-2]);
+			int value;
+			
+			try {
+				value = Integer.parseInt(splits[splits.length-2]);
+			} catch (NumberFormatException e) {
+			    return -1;
+			}
+			
 			String span = splits[splits.length-1];
 			
 			if (span.contains("minute")) {
@@ -152,6 +177,12 @@ public class SightingsList extends Observable {
 		else if (sortOption.equalsIgnoreCase("posted")) {
 			
 			sortByDatePosted();
+			
+		}
+		
+		else {
+			
+			keepOriginalOrder();
 			
 		}
 		
@@ -227,6 +258,23 @@ public class SightingsList extends Observable {
 	        }
 
    		});
+		
+	}
+	
+	public void keepOriginalOrder() {
+		
+		for (int i = 0; i < originalParsedIncidents.size(); i++) {
+			
+			parsedIncidents.set(i, originalParsedIncidents.get(i));
+			
+		}
+		
+	}
+	
+	public String fetchIncidentDetails(String incidentID) {
+		
+		String incidentDetails = ripley.getIncidentDetails(incidentID);
+		return incidentDetails;
 		
 	}
 	
