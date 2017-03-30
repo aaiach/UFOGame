@@ -19,25 +19,57 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
+/**
+ * JPanel which contains all panels, including the main Menu, the game and end panels
+ * 
+ * @author aaiach
+ *
+ */
 public class Menu extends JPanel implements Observer{
 
+	/**
+	 * Unique Panel UID
+	 */
 	private static final long serialVersionUID = 9097057926165173951L;
 
-	//Default views.models.game difficulty
+	/**
+	 * Difficulty selected
+	 * 
+	 * Default difficulty is 1
+	 */
 	private int difficulty = 1;
 
+	/**
+	 * Timer used to wait between the display of the win/loose panel and the main menu
+	 */
 	private Timer timer;
 
-	//Panels needed in the views.models.game : the menu, won/lost screens and the views.models.game panel
+	/**
+	 * Menu panel, with the Start and Difficulty button
+	 */
 	private JPanel menuPanel = new JPanel();
+	/**
+	 * Panel shown when a player has won
+	 */
 	private JPanel wonPanel = new JPanel();
+	/**
+	 * Panel shown when a player has lost
+	 */
 	private JPanel lostPanel = new JPanel();
+	/**
+	 * Main game panel
+	 */
 	private GamePanel gamePanel;
 
-	//start button
+	/**
+	 * Start button
+	 */
 	private JButton start = new JButton();
 
-	//Constructor which adds all pannels and leaves the Menu one visible
+	/**
+	 * Constructor which adds all panels to this panel, leaving the Menu one visible
+	 * @param gamePanel is the panel where the game will be shown
+	 */
 	public Menu(GamePanel gamePanel){
 
 		this.gamePanel = gamePanel;
@@ -51,7 +83,10 @@ public class Menu extends JPanel implements Observer{
 
 	}
 
-	//Method which constructs the Menu
+	/**
+	 * Method which constructs the menu panel
+	 * @return the menu JPanel
+	 */
 	public JPanel getMenu(){
 
 		menuPanel.setLayout(new BoxLayout(menuPanel, BoxLayout.Y_AXIS));
@@ -64,7 +99,7 @@ public class Menu extends JPanel implements Observer{
 		menuPanel.add(Box.createVerticalStrut(80));
 		start = createSimpleButton("      Start      ");
 		
-		//Button Listener which starts the views.models.game with selected difficulty when pressed
+		//Button Listener which starts the game with selected difficulty when pressed
 		start.addActionListener(new ActionListener(){
 
 			@Override
@@ -84,7 +119,7 @@ public class Menu extends JPanel implements Observer{
 		menuPanel.add(Box.createVerticalStrut(20));
 
 		final JButton difficultyBtn = createSimpleButton("Difficulty : " + difficulty);
-		//Button Listener which updates the difficulty
+		//Button Listener which increments the difficulty when pressed
 		difficultyBtn.addActionListener(new ActionListener(){
 
 			@Override
@@ -108,7 +143,9 @@ public class Menu extends JPanel implements Observer{
 		return menuPanel;
 	}
 
-	//Method which constructs the end panels
+	/**
+	 * Method which constructs the end panels
+	 */
 	public void getEndPanels(){
 
 		wonPanel.setBackground(new Color(0x78ff78));
@@ -127,7 +164,12 @@ public class Menu extends JPanel implements Observer{
 		lostPanel.setPreferredSize(new Dimension(GamePanel.Width, GamePanel.Height));
 	}
 
-	//Method which constructs the design of the button from the StyledButtonUI class
+	/**
+	 * Method which creates a pre-designed button
+	 * @see StyledButtonUI
+	 * @param the text written in the button
+	 * @return the JButton generated
+	 */
 	private static JButton createSimpleButton(String text) {
 		JButton button = new JButton(text);
 		button.setFont(new Font("Calibri", Font.PLAIN, 20));
@@ -140,7 +182,9 @@ public class Menu extends JPanel implements Observer{
 		return button;
 	}
 
-	//Ends the views.models.game when notified by showing an end pannel and bringing the user back to the Menu
+	/**
+	 * When called by an Observed class, this ends the game by showing an end panel and bringing the user back to the Menu
+	 */
 	@Override
 	public void update(Observable o, Object arg) {
 				
@@ -163,7 +207,10 @@ public class Menu extends JPanel implements Observer{
 
 	}
 	
-	//Method which returns the ActionListener which resets the View after it has ended
+	/**
+	 * Method which returns the ActionListener which displays the menu after the game has ended
+	 * @return the ActionListener which displays the menu after the game has ended
+	 */
 	public ActionListener getAL(){
 		ActionListener al = (new ActionListener(){
 

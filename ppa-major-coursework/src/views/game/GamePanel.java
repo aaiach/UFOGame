@@ -16,31 +16,63 @@ import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
-
+/**
+ * JPanel which contains the executing game
+ * 
+ * @author aaiach
+ *
+ */
 public class GamePanel extends JPanel{
 
+	/**
+	 * Unique Panel UID
+	 */
 	private static final long serialVersionUID = 4949883323092618015L;
 	
-	//Width and Height of the panel, must always be identical to frame size
+	/**
+	 * Global variable which contains the Width of the Frame the Panel is positioned in
+	 */
 	public static final int Width = 800;
+	
+	/**
+	 * Global variable which contains the Height of the Frame the Panel is positioned in
+	 */
 	public static final int Height = 600;
-	//Keeps track of the outcome of the last views.models.game
+	
+	/**
+	 * Boolean which keeps track of the status of the game
+	 */
 	public boolean lost;
-	//Timer which coordinates all events within the views.models.game
+	
+	/**
+	 * Timer which coordinates all events and actions within the game
+	 */
 	private Timer timer;
 
+	/**
+	 * GameController which keeps track of the instance of the model 
+	 */
 	private GameController control;
 
+	/**
+	 * Int which keeps track of the time which the game has been running for
+	 */
 	private int time = 0;
 	
+	/**
+	 * Instantiates the GamePanel with a supplied GameController
+	 * @param Controller which controls the games and contains the instance of the model, the GameEnv
+	 */
 	public GamePanel(GameController ctrl) {
 		this.control = ctrl;
 	}
-
-	//Method which runs the views.models.game
+	
+	/**
+	 * Starts the game clock, positions all initial elements and starts executing all movements until the game ends
+	 */
 	public void start(){
 
-		//The views.models.game follow the timer, and the view is updated periodically
+		//The Game follows the timer, and the view is updated periodically
 		timer = new Timer(20, new ActionListener(){
 
 			Random r = new Random();
@@ -50,7 +82,7 @@ public class GamePanel extends JPanel{
 
 				lost = control.getGame().hasLost();
 				
-				//Checks if the views.models.game has ended
+				//Checks if the Game has ended and clears the UFOs and Stops the game is it is the case
 				if(control.getGame().hasLost() || control.getGame().hasWon()){
 					control.getGame().getUFOs().clear();
 					timer.stop();
@@ -80,7 +112,9 @@ public class GamePanel extends JPanel{
 	}
 
 
-	//Paints all UFOS and the target at every repaint();
+	/**
+	 * Paints all UFOS and the target at every repaint();
+	 */
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
@@ -125,21 +159,31 @@ public class GamePanel extends JPanel{
 
 	}
 
-	//Class Accessors
 	@Override
 	public Dimension getPreferredSize() {
 		return new Dimension(Width, Height);
 	}
 	
+	/**
+	 * Gets the GameController
+	 * @return the GameController
+	 */
 	public GameController getControl(){
 		return control;
 	}
 	
+	/**
+	 * Gets if the game has been lost
+	 * @return if the game has been lost
+	 */
 	public boolean hasLost(){
 		return lost;
 	}
 
-	//Method which returns a color from the Green to Red range depending on how close a player is to loosing the views.models.game
+	/**
+	 * Method which returns a color from the Green to Red range depending on how close a player is to loosing the views.models.game
+	 * @return the Color which corresponds to the current status of the game
+	 */
 	public Color getColorfromUFO(){
 		Color b;
 		
