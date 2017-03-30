@@ -6,19 +6,58 @@ import java.util.List;
 import java.util.Observable;
 import java.util.Random;
 
-
+/**
+ * Models the entire game by handling and positioning all elements including UFOs and the Target
+ * 
+ * @author Adriel Aiach
+ *
+ */
 public class GameEnv extends Observable{
-	//Model : The views.models.game consists of a collection of UFOS, a Target, and is defined by its starting number of UFOs, UFOs required for a lose, and initial speed;
 
+	/**
+	 * ArrayList which contains all the visible UFOs at all times
+	 */
 	private ArrayList<UFO> ufos = new ArrayList<>();
+	/**
+	 * Coordinates of the target
+	 */
 	private Coordinates target = new Coordinates(GamePanel.Width/2 - 55, GamePanel.Height/2 - 55);
-	private int maxUFO, minUFO, speedCoefficient;
+
+	/**
+	 * Integer which defines the max number of UFOs that are allowed until a game is lost
+	 */
+	private int maxUFO; 
+	/**
+	 * Integer which defines the initial number of UFOs when a game starts
+	 */
+	private int minUFO;
+	/**
+	 * The higher this value, the more likely it is for a UFO to spawn with a higher speed
+	 */
+	private int speedCoefficient;
+
+	/**
+	 * Boolean which allows or not the target to move up
+	 */
+	private boolean target_up = false; 
+	/**
+	 * Boolean which allows or not the target to move down
+	 */
+	private boolean target_down = false;
+	/**
+	 * Boolean which allows or not the target to move right
+	 */
+	private boolean target_right = false; 
+	/**
+	 * Boolean which allows or not the target to move left
+	 */
+	private boolean target_left = false;
 
 
-	//Booleans which dictate the movement of the target
-	private boolean target_up = false, target_down = false, target_right = false, target_left = false;
-
-
+	/**
+	 * Method which spawns the initial UFOS with random coordinates and speed
+	 * @param difficulty sets the difficulty of the game by changing the initial amount of ufos, the maximum amount of ufos to loose and the speedcoefficient
+	 */
 	public void startGame(int difficulty){
 
 		setDifficulty(difficulty);
@@ -49,6 +88,7 @@ public class GameEnv extends Observable{
 					ufos.add(new UFO(temp_x, temp_y, temp_speed));
 					hasClose = false;
 				}else{
+					//Attempt to spawn the UFO at a new position if there are closeby UFOs
 					temp_x = r.nextInt(GamePanel.Width) - 60;
 					temp_y = r.nextInt(GamePanel.Height) - 60;
 				}
@@ -56,32 +96,60 @@ public class GameEnv extends Observable{
 		}
 	}
 
-	//Class getters
+	/**
+	 * Gets the List of UFOs
+	 * @return the List of UFOs
+	 */
 	public List<UFO> getUFOs(){
 		return this.ufos;
 	}
 
+	/**
+	 * Gets the Target
+	 * @return the Target
+	 */
 	public Coordinates getTarget(){
 		return this.target;
 	}
 
+	/**
+	 * Gets the max number of ufos for this game
+	 * @return the max number of ufos
+	 */
 	public int getMaxUFO(){
 		return this.maxUFO;
 	}
 
+	/**
+	 * Gets the min number of ufos for this game
+	 * @return the min number of ufos
+	 */
 	public int getMinUFO(){
 		return this.minUFO;
 	}
 
+	/**
+	 * Gets the speedCoefficient of this game
+	 * @return the speedCoefficient of this game
+	 */
 	public int getSpeedCoefficient(){
 		return this.speedCoefficient;
 	}
 
+	/**
+	 * Increments the speedCoefficient of this game
+	 */
 	public void incrementSpeedCoefficient(){
 		this.speedCoefficient++;
 	}
 
-	//A player has won if all UFOs are removed;
+	/**
+	 * Checks if a player has won by checking if there are 0 UFOs left
+	 * 
+	 * Notifies observers that the game ended if true
+	 * 
+	 * @return if the player has won
+	 */
 	public boolean hasWon(){
 		if(ufos.size()==0){
 			setChanged();
@@ -91,7 +159,13 @@ public class GameEnv extends Observable{
 		return false;
 	}
 
-	//A player has lost if the total number of UFOs exceeds the maxUFO
+	/**
+	 * Checks if a player has lost by checking if the number of UFOs is greater or equal than maxUFO 
+	 * 
+	 * Notifies observers that the game ended if true
+	 * 
+	 * @return if the player has lost
+	 */	
 	public boolean hasLost(){
 
 		if(ufos.size() >= this.maxUFO){
@@ -102,7 +176,10 @@ public class GameEnv extends Observable{
 		return false;
 	}
 
-	//updates the position of the target
+
+	/**
+	 * Method which moves the target based on its permission to move and the panel borders
+	 */
 	public void moveTarget(){
 
 		if(target_up == true){
@@ -130,7 +207,7 @@ public class GameEnv extends Observable{
 
 	/**
 	 * @param s chooses one of the four directions the target can move in
-	 * @param b chooses is the target should be moving in that direction or not
+	 * @param b chooses if the target should be moving in that direction or not
 	 */
 	public void setTargetMove(String s, boolean b){
 		if(s.equals("UP")){
@@ -144,9 +221,14 @@ public class GameEnv extends Observable{
 		}
 	}
 
-	//Method which returns a UFO inside the target if there is one
+
+	/**
+	 * Method which checks if a UFO is centered in the Target
+	 * @return a UFO centered in the Target if there is one
+	 */
 	public UFO getUfo(){
 
+		//Offset of 30 pixels between coordinates of the target and its center
 		int target_x = target.getPosX() + 30;
 		int target_y = target.getPosY() + 30;
 
@@ -158,7 +240,13 @@ public class GameEnv extends Observable{
 		return null;
 	}
 
-	//Sets the difficulty of the views.models.game, which depends on the speed coefficient, the start and end number of UFOs
+	/**
+	 * Sets the difficulty of the game by changing minUFO, maxUFO, speedCoefficient of the game
+	 * @see minUFO
+	 * @see maxUFO
+	 * @see speedCoefficient
+	 * @param int between 1 and 4 which differentiates between 4 difficulties
+	 */
 	public void setDifficulty(int dif){
 		if(dif == 1){
 			this.minUFO =3;

@@ -4,31 +4,58 @@ import models.game.GameEnv;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+/**
+ * Class which controls the game by always handling the same instance of a GameEnv and the KeyListener
+ * 
+ * @author Adriel Aiach
+ *
+ */
 public class GameController {
 
-	//The control controls the model : the views.models.game and the Listeners
-	private ArrowListener Al= new ArrowListener();
+	/**
+	 * Listener which listens to the arrows and moves the target accordingly
+	 */
+	private ArrowListener Al = new ArrowListener();
+	/**
+	 * Instance of the model: the game
+	 */
 	private GameEnv game;
 
+	/**
+	 * Instantiates the GameController by supplying an instance of a GameEnv
+	 * @param GameEnvironment which will be controlled and shown
+	 */
 	public GameController(GameEnv ge) {
 		this.game = ge;
 	}
 
+	/**
+	 * Gets the game environment
+	 * @return the GameEnc
+	 */
 	public GameEnv getGame(){
 		return game;
 	}
 
+	/**
+	 * Gets the ArrowListener
+	 * @return the ArrowListener
+	 */
 	public ArrowListener getAl(){
 		return Al;
 	}
 
-	//Listener which listens to arrow keys and moves the target accordingly
+	/**
+	 * ArrowListener which listens to the pressing and releasing of arrows, and updates the permissions the target has to move
+	 * 
+	 * @author Adriel Aiach
+	 *
+	 */
 	class ArrowListener implements KeyListener {
 
 		@Override
 		public void keyTyped(KeyEvent e) {
 			// TODO Auto-generated method stub
-
 		}
 
 		@Override
