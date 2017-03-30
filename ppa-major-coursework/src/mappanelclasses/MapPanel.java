@@ -36,13 +36,15 @@ public class MapPanel extends JPanel {
 	/**
 	 * Constructor that adds the US map to the panel
 	 */
-	public MapPanel() {
+	public MapPanel(List<Incident> incidents) {
 		setLayout(null);
 		try {
-			backgroundMap = ImageIO.read(new File("us-map.png"));
+			backgroundMap = ImageIO.read(new File("images/us-map.png"));
 		} catch(IOException e) {
 			e.printStackTrace();
 		}
+		
+		update(incidents);
 	}
 	
 	/**

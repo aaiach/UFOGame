@@ -3,9 +3,12 @@
  */
 package models;
 
+import api.ripley.Incident;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Observable;
 
 /**
  * @author bunny
@@ -37,7 +40,7 @@ public class SightingsList extends Observable {
 			parsedIncident.setCity(incident.getCity());
 			parsedIncident.setShape(incident.getShape());
 			parsedIncident.setDuration(parseDuration(incident.getDuration()));
-			parsedIncident.setDatePosted(parseDatePosted(incident.getPosted()));
+			//parsedIncident.setDatePosted(parseDatePosted(incident.getPosted()));
 			
 			parsedIncidents.add(parsedIncident);
 			

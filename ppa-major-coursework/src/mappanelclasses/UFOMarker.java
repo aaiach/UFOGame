@@ -1,15 +1,14 @@
 package mappanelclasses;
 
-import java.awt.Graphics;
+import api.ripley.Incident;
+
+import javax.imageio.ImageIO;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-
-import javax.imageio.ImageIO;
-import javax.swing.JButton;
-
-import api.ripley.Incident;
 
 /**
  * A class representing a UFO marker that is placed on the map panel
@@ -26,7 +25,7 @@ public class UFOMarker extends JButton{
 	 */
 	public UFOMarker() {
 		try {
-			alienImage = ImageIO.read(new File("alien.png"));
+			alienImage = ImageIO.read(new File("images/alien.png"));
 		} catch(IOException e) {
 			e.printStackTrace();
 		}

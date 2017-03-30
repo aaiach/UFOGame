@@ -1,13 +1,11 @@
 package mappanelclasses;
 
+import api.ripley.Incident;
+
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-
-import api.ripley.Incident;
 
 /**
  * A class holding the action listener applied to each marker on the map panel.
@@ -45,7 +43,7 @@ public class AlienButtonListener implements ActionListener {
 		// Shantanu's code for the message panels go here
 		
 		JFrame infoFrame = new JFrame();
-		infoFrame.add(new JLabel("" + incidents.size()));
+		infoFrame.add(new JLabel(incidents.get(0).getState() + incidents.size()));
 		infoFrame.setSize(700, 300);
 		infoFrame.setVisible(true);
 		

@@ -3,13 +3,13 @@
  */
 package views;
 
-import java.util.Observable;
-import java.util.Observer;
+import controller.SightingsListController;
+import models.SightingsList;
+
 import javax.swing.*;
 import java.awt.*;
-
-import models.*;
-import controller.*;
+import java.util.Observable;
+import java.util.Observer;
 
 /**
  * @author bunny
@@ -35,5 +35,9 @@ public class SightingsListWindow extends JFrame implements Observer {
 		topPanel.add(sortOptionsList);
 		
 	}
-	
+
+	@Override
+	public void update(Observable o, Object arg) {
+
+	}
 }
