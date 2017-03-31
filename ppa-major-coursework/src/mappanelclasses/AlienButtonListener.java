@@ -4,10 +4,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-
 import api.ripley.Incident;
+import controller.SightingsListController;
+import controller.statistics.USStates;
+import models.SightingsList;
+import views.SightingsListWindow;
 
 /**
  * A class holding the action listener applied to each marker on the map panel.
@@ -18,7 +19,10 @@ import api.ripley.Incident;
  *
  */
 public class AlienButtonListener implements ActionListener {
-	// A list of all the incidents that have taken place in the area linked to the relevant marker
+	
+	/**
+	 * A list of all the incidents that have taken place in the area linked to the relevant marker
+	 */
 	private ArrayList<Incident> incidents;
 	
 	/**
@@ -42,13 +46,21 @@ public class AlienButtonListener implements ActionListener {
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// Shantanu's code for the message panels go here
 		
-		JFrame infoFrame = new JFrame();
-		infoFrame.add(new JLabel("" + incidents.size()));
-		infoFrame.setSize(700, 300);
-		infoFrame.setVisible(true);
+		Incident incident = incidents.get(0);
+		String abbreviatedStateName = incident.getState();
 		
-		//
+		String stateName = USStates.getFullStateName(abbreviatedStateName);
+		
+		// create a new instance of the SightingsList class with the required parameters
+		SightingsList sightingsList = new SightingsList("California", "CA", incidents);
+		// create a new instance of the SightingsListController class, passing in sightingsList
+		SightingsListController sightingsListController = new SightingsListController(sightingsList);
+		
+		// create a new instance of the SightingsListWindow class, passing in sightingsListController and sightingsList
+		SightingsListWindow sightingsListWindow = new SightingsListWindow(sightingsListController, sightingsList);
+		// add the sightingsListWindow as an observer of sightingsList
+		sightingsList.addObserver(sightingsListWindow);
+
 	}
 }
