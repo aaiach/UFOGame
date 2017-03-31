@@ -2,6 +2,7 @@ package controller;
 
 import api.ripley.Incident;
 import api.ripley.Ripley;
+import views.MapPanel;
 import models.game.GameEnv;
 import views.Directions;
 import views.MainWindow;
@@ -60,9 +61,7 @@ public class MainController {
      * The first line to display on the WelcomePanel
      */
     private String firstLine;
-    private final GameEnv game;
     private final GameController gameController;
-    private final GamePanel gamePanel;
     private final Menu menu;
 
     /**
@@ -101,9 +100,9 @@ public class MainController {
         panels = new ArrayList<>();
         panels.add(0, welcomePanel);
 
-        game = new GameEnv();
+        GameEnv game = new GameEnv();
         gameController = new GameController(game);
-        gamePanel = new GamePanel(gameController);
+        GamePanel gamePanel = new GamePanel(gameController);
         menu = new Menu(gamePanel);
         game.addObserver(menu);
     }
@@ -148,8 +147,6 @@ public class MainController {
             else {
                 // Create a new StatisticController
                 StatisticController statisticController = new StatisticController(incidents, dateFrom, dateTo);
-                // Add the StatisticPanel to the panels List
-                panels.add(1, statisticController.getPanel());
 
                 // Get the end time
                 long endTime = System.currentTimeMillis();
@@ -161,6 +158,10 @@ public class MainController {
                 long minutes = timeDifference / 1000 / 60;
                 long seconds = (timeDifference / 1000) % 60;
 
+                MapPanel mapPanel = new MapPanel(incidents);
+                panels.add(1, mapPanel);
+                panels.add(2, statisticController.getPanel());
+
                 // Add time taken to welcome panel
                 welcomePanel.addText("Data grabbed in: " + minutes + " minutes " + seconds + " seconds");
                 welcomePanel.addText("Please now interact with this data using the" +
@@ -169,7 +170,7 @@ public class MainController {
                 // Change last updated time
                 window.setLastUpdated(ripley.getLastUpdated());
 
-                panels.add(2, menu);
+                panels.add(3, menu);
 
                 // Enable the right button
                 window.enableButton(Directions.RIGHT, true);
