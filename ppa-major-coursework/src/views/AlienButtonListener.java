@@ -8,6 +8,8 @@ import models.statistics.USStates;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * A class holding the action listener applied to each marker on the map panel.
@@ -49,7 +51,17 @@ public class AlienButtonListener implements ActionListener {
 		Incident incident = incidents.get(0);
 		String abbreviatedStateName = incident.getState();
 
-		String stateName = USStates.getFullStateName(abbreviatedStateName);
+		String stateNameFull = USStates.getFullStateName(abbreviatedStateName);
+        String stateName;
+        try {
+            List<String> stateNameList = Arrays.asList(stateNameFull.split(","));
+            stateNameList = stateNameList.subList(0, stateNameList.size() - 2);
+            stateName = String.join(" ", stateNameList);
+        } catch (NullPointerException ex) {
+            stateName = "Not specified";
+            abbreviatedStateName = "NA";
+        }
+
 
 		// create a new instance of the SightingsList class with the required parameters
 		SightingsList sightingsList = new SightingsList(stateName, abbreviatedStateName, incidents);
