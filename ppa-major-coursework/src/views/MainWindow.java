@@ -180,6 +180,11 @@ public class MainWindow extends JFrame {
             this.setResizable(false);
         }
 
+        if (panelToDisplay instanceof MapPanel) {
+            this.setSize(1440, 1100);
+            this.setResizable(false);
+        }
+
         // Redraw the window
         this.revalidate();
         this.repaint();
