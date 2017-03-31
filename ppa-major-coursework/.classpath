@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="lib" path="lib/jdatepicker-docs.jar"/>
+	<classpathentry kind="lib" path="lib/jdatepicker-src.jar"/>
+	<classpathentry kind="lib" path="lib/jdatepicker.jar"/>
+	<classpathentry kind="lib" path="lib/natty-0.14-SNAPSHOT-doc.jar"/>
+	<classpathentry kind="lib" path="lib/natty-0.14-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="lib/ripley-docs.jar"/>
+	<classpathentry kind="lib" path="lib/ripley.jar"/>
+	<classpathentry kind="lib" path="lib/slf4j-simple-1.7.22.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

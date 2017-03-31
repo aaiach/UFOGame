@@ -2,9 +2,13 @@ package controller;
 
 import api.ripley.Incident;
 import api.ripley.Ripley;
+import views.MapPanel;
+import models.game.GameEnv;
 import views.Directions;
 import views.MainWindow;
 import views.WelcomePanel;
+import views.game.GamePanel;
+import views.game.Menu;
 
 import javax.swing.*;
 import java.text.SimpleDateFormat;
@@ -57,6 +61,8 @@ public class MainController {
      * The first line to display on the WelcomePanel
      */
     private String firstLine;
+    private final GameController gameController;
+    private final Menu menu;
 
     /**
      * Creates a new MainController, that will run the whole program
@@ -93,6 +99,12 @@ public class MainController {
         // Create an ArrayList to store the JPanels of the display in order
         panels = new ArrayList<>();
         panels.add(0, welcomePanel);
+
+        GameEnv game = new GameEnv();
+        gameController = new GameController(game);
+        GamePanel gamePanel = new GamePanel(gameController);
+        menu = new Menu(gamePanel);
+        game.addObserver(menu);
     }
 
     /**
@@ -135,8 +147,6 @@ public class MainController {
             else {
                 // Create a new StatisticController
                 StatisticController statisticController = new StatisticController(incidents, dateFrom, dateTo);
-                // Add the StatisticPanel to the panels List
-                panels.add(1, statisticController.getPanel());
 
                 // Get the end time
                 long endTime = System.currentTimeMillis();
@@ -148,6 +158,10 @@ public class MainController {
                 long minutes = timeDifference / 1000 / 60;
                 long seconds = (timeDifference / 1000) % 60;
 
+                MapPanel mapPanel = new MapPanel(incidents);
+                panels.add(1, mapPanel);
+                panels.add(2, statisticController.getPanel());
+
                 // Add time taken to welcome panel
                 welcomePanel.addText("Data grabbed in: " + minutes + " minutes " + seconds + " seconds");
                 welcomePanel.addText("Please now interact with this data using the" +
@@ -155,6 +169,8 @@ public class MainController {
 
                 // Change last updated time
                 window.setLastUpdated(ripley.getLastUpdated());
+
+                panels.add(3, menu);
 
                 // Enable the right button
                 window.enableButton(Directions.RIGHT, true);
@@ -179,6 +195,16 @@ public class MainController {
         // If there is no JPanel to the right, disable the right button
         else if (newIndex == panels.size() - 1) window.enableButton(Directions.RIGHT, false);
         // Change the window's panel
+        JPanel newPanel = panels.get(newIndex);
+
+        if (newPanel instanceof Menu || newPanel instanceof GamePanel) {
+            window.setFocusable(true);
+            window.addKeyListener(gameController.getAl());
+        } else {
+            window.setFocusable(false);
+            window.removeKeyListener(gameController.getAl());
+        }
+
         window.setPanelOnDisplay(panels.get(newIndex));
     }
 }

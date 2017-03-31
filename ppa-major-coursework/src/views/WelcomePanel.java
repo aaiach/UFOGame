@@ -11,6 +11,11 @@ import java.awt.*;
 public class WelcomePanel extends JPanel {
 
     /**
+	 * This is the serial version UID used for serialising this class
+	 */
+	private static final long serialVersionUID = 1832126305541846243L;
+
+	/**
      * Make a new WelcomePanel
      */
     public WelcomePanel() {

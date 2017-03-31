@@ -14,6 +14,11 @@ import java.awt.*;
  */
 public class StatisticsPanel extends JPanel {
     /**
+	 * This is the serial version UID used for serialising this class
+	 */
+	private static final long serialVersionUID = 3840356204908710492L;
+
+	/**
      * The statistic to display in the top left
      */
     private SingleStatisticPanel topLeft;
